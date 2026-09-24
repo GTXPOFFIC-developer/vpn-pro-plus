@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Build artifacts & temp
+dist/
+installer/output/
+installer.exe
+installer/deps/
+bin/engine/session/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment & OS files
+.DS_Store
+Thumbs.db
+*.tmp

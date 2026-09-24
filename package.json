@@ -1,0 +1,54 @@
+{
+  "name": "vpn-pro-plus",
+  "version": "1.0.0",
+  "description": "VPN Pro+ — A modern, premium Windows VPN client by ODS Inc.",
+  "author": "ODS Inc.",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:admin": "powershell -Command \"Start-Process npm -ArgumentList 'start' -Verb RunAs\"",
+    "setup:driver": "powershell -ExecutionPolicy Bypass -File scripts/setup_virtual_driver.ps1",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win",
+    "build:installer": "powershell -ExecutionPolicy Bypass -File scripts/build_installer.ps1"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "dependencies": {
+    "three": "^0.168.0"
+  },
+  "build": {
+    "appId": "com.odsinc.vpnproplus",
+    "productName": "VPN Pro+",
+    "copyright": "Copyright © 2026 ODS Inc.",
+    "win": {
+      "target": "dir",
+      "icon": "assets/icon.ico",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "bin/engine",
+        "to": "bin/engine",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  },
+  "allowScripts": {
+    "electron@32.3.3": true
+  }
+}

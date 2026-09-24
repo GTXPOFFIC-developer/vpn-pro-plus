@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VPN Pro+</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Custom Title Bar ────────────────────────────────── -->
+  <header id="titlebar">
+    <div class="titlebar-logo">
+      <svg class="titlebar-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span class="titlebar-text">VPN Pro<span class="accent">+</span></span>
+    </div>
+    <div class="titlebar-controls">
+      <button id="btn-min" class="tb-btn" aria-label="Minimize">
+        <svg viewBox="0 0 12 12" width="12" height="12"><rect y="5" width="12" height="1.5" rx=".75" fill="currentColor"/></svg>
+      </button>
+      <button id="btn-max" class="tb-btn" aria-label="Maximize">
+        <svg viewBox="0 0 12 12" width="12" height="12"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      </button>
+      <button id="btn-close" class="tb-btn tb-close" aria-label="Close">
+        <svg viewBox="0 0 12 12" width="12" height="12"><line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="1" x2="1" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main Content ────────────────────────────────────── -->
+  <main id="app">
+
+    <!-- Globe container -->
+    <div id="globe-container">
+      <canvas id="globe-canvas"></canvas>
+      <!-- Status overlay on globe -->
+      <div id="status-overlay">
+        <div id="status-label">DISCONNECTED</div>
+        <div id="status-ip"></div>
+      </div>
+    </div>
+
+    <!-- Connect Button -->
+    <div id="connect-area">
+      <button id="btn-connect" class="connect-btn" data-state="disconnected">
+        <div class="connect-btn-inner">
+          <svg class="power-icon" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M12 2v6"/>
+            <path d="M18.36 6.64A9 9 0 1 1 5.64 6.64"/>
+          </svg>
+        </div>
+        <div class="connect-btn-ring"></div>
+        <div class="connect-btn-pulse"></div>
+      </button>
+      <p id="connect-label">Tap to connect</p>
+    </div>
+
+    <!-- Country Picker -->
+    <div id="country-section">
+      <button id="country-picker-toggle">
+        <span id="selected-flag" class="flag-emoji">🌍</span>
+        <span id="selected-country">Auto – Best Server</span>
+        <span id="selected-meta"></span>
+        <svg class="chevron" viewBox="0 0 12 12" width="12" height="12"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div id="country-dropdown" class="hidden">
+        <div class="dropdown-search-wrap">
+          <input id="country-search" type="text" placeholder="Search country…" autocomplete="off" />
+        </div>
+        <ul id="country-list"></ul>
+      </div>
+    </div>
+
+    <!-- Stats Panel -->
+    <div id="stats-panel" class="hidden">
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat-label">Server</span>
+          <span class="stat-value" id="stat-server">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Location</span>
+          <span class="stat-value" id="stat-location">—</span>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat-label">Ping</span>
+          <span class="stat-value" id="stat-ping">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Duration</span>
+          <span class="stat-value" id="stat-duration">00:00:00</span>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat-label">↓ Download</span>
+          <span class="stat-value" id="stat-down">0 B</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">↑ Upload</span>
+          <span class="stat-value" id="stat-up">0 B</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enterprise Security Badge -->
+    <div id="security-badge" class="security-badge">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span>AES-256 GCM • Dedicated Enterprise Tunnel</span>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay">
+      <div class="loader-ring"></div>
+      <p>Fetching servers…</p>
+    </div>
+
+  </main>
+
+  <!-- Scripts: three.js loaded via CJS shim chain -->
+  <script src="three-shim.js"></script>
+  <script src="three.cjs"></script>
+  <script src="three-post.js"></script>
+  <script src="globe.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
