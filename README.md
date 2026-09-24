@@ -4,17 +4,12 @@ A modern, premium Windows VPN client built with Electron by **ODS Inc.** Automat
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-| Feature | Description |
-|---|---|
-| **Auto-connect** | Fetches the live global server list and connects to the best server on launch |
-| **100+ Countries** | Browse servers in every available country, with ping & speed stats |
-| **3-D Globe** | Animated wireframe globe with flying arcs visualizing your connection |
-| **Live Stats** | Real-time IP, ping, session duration, and data transferred |
-| **Dark Theme** | Premium dark UI with glassmorphism and micro-animations |
-| **Auto-launch** | Starts with Windows (configurable during install) |
-| **Embedded Engine** | Fully self-contained high-performance tunnel engine (no third-party app installed) |
+- **Global Gateway Network**: Connect to servers across 100+ countries with real-time health and speed ranking.
+- **Auto-Connect & Intelligent Failover**: Automatically selects the best available gateway and seamlessly falls back to alternate nodes if a server is congested.
+- **Self-Contained Tunnel Engine**: Built-in, high-performance secure tunnel engine requiring no third-party OpenVPN software installed.
+- **Automated Virtual Driver Installation**: Bundled installer automatically installs the virtual network driver and configures the dedicated `WAN` adapter.
 
 ---
 
